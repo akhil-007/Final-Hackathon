@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="mileageModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Master">
+    <Key>
+      <PropertyRef Name="Vehicle_No" />
+    </Key>
+    <Property Name="Vehicle_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Wheel_Type" Type="Int32" Nullable="false" />
+    <Property Name="Vehicle_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Year" Type="Int32" Nullable="false" />
+    <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Manufacturer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Fuel_Capacity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Transactions" Relationship="Self.FK" FromRole="Master" ToRole="Transaction" />
+  </EntityType>
+  <EntityType Name="Transaction">
+    <Key>
+      <PropertyRef Name="Trip_Id" />
+    </Key>
+    <Property Name="Trip_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Vehicle_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Address_Start" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Address_End" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Ride_Type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Fuel_Cost_Litre" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Distance" Type="Double" Nullable="false" />
+    <Property Name="Start_Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="End_Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AC" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Fuel" Type="Int32" Nullable="false" />
+    <Property Name="Mileage" Type="Double" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="Rate_km" Type="Double" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Master" Relationship="Self.FK" FromRole="Transaction" ToRole="Master" />
+  </EntityType>
+  <Association Name="FK">
+    <End Role="Master" Type="Self.Master" Multiplicity="1" />
+    <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Master">
+        <PropertyRef Name="Vehicle_No" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="Vehicle_No" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="mileageEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Masters" EntityType="Self.Master" />
+    <EntitySet Name="Transactions" EntityType="Self.Transaction" />
+    <AssociationSet Name="FK" Association="Self.FK">
+      <End Role="Master" EntitySet="Masters" />
+      <End Role="Transaction" EntitySet="Transactions" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

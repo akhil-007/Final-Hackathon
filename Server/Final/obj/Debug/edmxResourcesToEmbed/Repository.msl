@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="mileageModelStoreContainer" CdmEntityContainer="mileageEntities">
+    <EntitySetMapping Name="Masters">
+      <EntityTypeMapping TypeName="mileageModel.Master">
+        <MappingFragment StoreEntitySet="Master">
+          <ScalarProperty Name="Vehicle_No" ColumnName="Vehicle_No" />
+          <ScalarProperty Name="Wheel_Type" ColumnName="Wheel_Type" />
+          <ScalarProperty Name="Vehicle_Type" ColumnName="Vehicle_Type" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="Manufacturer" ColumnName="Manufacturer" />
+          <ScalarProperty Name="Fuel_Capacity" ColumnName="Fuel_Capacity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Transactions">
+      <EntityTypeMapping TypeName="mileageModel.Transaction">
+        <MappingFragment StoreEntitySet="Transaction">
+          <ScalarProperty Name="Trip_Id" ColumnName="Trip_Id" />
+          <ScalarProperty Name="Vehicle_No" ColumnName="Vehicle_No" />
+          <ScalarProperty Name="Address_Start" ColumnName="Address_Start" />
+          <ScalarProperty Name="Address_End" ColumnName="Address_End" />
+          <ScalarProperty Name="Ride_Type" ColumnName="Ride_Type" />
+          <ScalarProperty Name="Fuel_Cost_Litre" ColumnName="Fuel_Cost_Litre" />
+          <ScalarProperty Name="Distance" ColumnName="Distance" />
+          <ScalarProperty Name="Start_Date" ColumnName="Start_Date" />
+          <ScalarProperty Name="End_Date" ColumnName="End_Date" />
+          <ScalarProperty Name="AC" ColumnName="AC" />
+          <ScalarProperty Name="Fuel" ColumnName="Fuel" />
+          <ScalarProperty Name="Mileage" ColumnName="Mileage" />
+          <ScalarProperty Name="Rate_km" ColumnName="Rate_km" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
